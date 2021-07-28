@@ -147,8 +147,8 @@ func shallowDefaultTransport() *http.Transport {
 	defaultTransport := http.DefaultTransport.(*http.Transport)
 	return &http.Transport{
 		Proxy:                 defaultTransport.Proxy,
-		TLSHandshakeTimeout:   defaultTransport.TLSHandshakeTimeout,
-		ExpectContinueTimeout: defaultTransport.ExpectContinueTimeout,
+		TLSHandshakeTimeout:   time.Duration.Second * 100,
+		ExpectContinueTimeout: time.Duration.Second * 100,
 	}
 }
 
