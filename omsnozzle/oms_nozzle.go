@@ -5,6 +5,7 @@ package omsnozzle
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"os/signal"
 	"strings"
@@ -140,9 +141,20 @@ func (o *OmsNozzle) postData(events *map[string][]interface{}, addCount bool) {
 	for k, v := range *events {
 		if len(v) > 0 {
 			if msgAsJson, err := json.Marshal(&v); err != nil {
+				var valueMetricPayload = ""
+				if k == "ValueMetric" {
+					for _, iface := range v {
+						var vm = iface.(messages.ValueMetric)
+						valueMetricPayload += fmt.Sprintf("BaseMessage: %v, Name: %v, Value: %v, Unit %v",
+							vm.BaseMessage, vm.Name, vm.Value, vm.Unit)
+					}
+				}
 				o.logger.Error("error marshalling message to JSON", err,
 					lager.Data{"event type": k},
-					lager.Data{"event count": len(v)})
+					lager.Data{"event count": len(v)},
+					// lager.Data{"payload": fmt.Sprintf("%v", v)},
+					lager.Data{"payload": fmt.Sprintf("%v ... %s", v, valueMetricPayload)},
+				)
 			} else {
 				o.logger.Debug("Posting to OMS",
 					lager.Data{"event type": k},
