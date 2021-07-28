@@ -149,6 +149,7 @@ func shallowDefaultTransport() *http.Transport {
 		Proxy:                 defaultTransport.Proxy,
 		TLSHandshakeTimeout:   time.Second * 100,
 		ExpectContinueTimeout: time.Second * 100,
+		ResponseHeaderTimeout: time.Second * 100,
 	}
 }
 
