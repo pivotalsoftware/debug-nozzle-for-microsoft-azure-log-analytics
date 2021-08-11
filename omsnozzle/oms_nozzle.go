@@ -146,7 +146,7 @@ func (o *OmsNozzle) postData(events *map[string][]interface{}, addCount bool) {
 			var valueMetricPayload = ""
 			if k == "ValueMetric" {
 				for _, iface := range v {
-					var vm = iface.(messages.ValueMetric)
+					var vm = iface.(*messages.ValueMetric)
 					valueMetricPayload += fmt.Sprintf("BaseMessage: %v, Name: %v, Value: %v, Unit %v",
 						vm.BaseMessage, vm.Name, vm.Value, vm.Unit)
 				}
