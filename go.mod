@@ -12,7 +12,7 @@ require (
 	github.com/cloudfoundry/sonde-go v0.0.0-20171206171820-b33733203bb4 // pinned
 	github.com/elazarl/goproxy v0.0.0-20200426045556-49ad98f6dac1 // indirect
 	github.com/elazarl/goproxy/ext v0.0.0-20200426045556-49ad98f6dac1 // indirect
-	github.com/gogo/protobuf v1.3.1 // indirect
+	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/mailru/easyjson v0.7.1 // indirect
 	github.com/onsi/ginkgo v1.12.3
